@@ -13,7 +13,7 @@
 
 -(void)configMappingWithDictionary:(NSDictionary*)dic managerObjectContext:(NSManagedObjectContext*)context
 {
-    NSDictionary *nameMappingDic ;
+    NSDictionary *nameMappingDic;
     NSDictionary *typeMappingDic;
     if([self respondsToSelector:NSSelectorFromString(@"propertyNameMapping")])
         nameMappingDic =[[self propertyNameMapping]retain];
@@ -33,11 +33,10 @@
                 }
                 
             }
-            // handle Dictionary
+            // deal with Dictionary
             if ([value isKindOfClass:[NSDictionary class]]) {
                 NSDictionary *tempDic =[value retain];
                 Class klass =NSClassFromString([typeMappingDic valueForKey:[nameMappingDic valueForKey:key] ]);
-                //  [MappingRuntimeHelper propertyClassForPropertyName:[typeMappingDic valueForKey:[nameMappingDic valueForKey:key] ]ofClass:[self class]];
                 if(context)
                 { value =  [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(klass) inManagedObjectContext: context];
                     [value configMappingWithDictionary:tempDic managerObjectContext:context];
@@ -45,9 +44,8 @@
                 }
                 else {value =[[klass alloc]init];
                     [value configMappingWithDictionary:tempDic managerObjectContext:nil];
-                  [tempDic release];}
+                    [tempDic release];}
             }
-            // handle array
             else if ([value isKindOfClass:[NSArray class]]) {
                 Class arrayItemType =NSClassFromString([typeMappingDic objectForKey:[nameMappingDic valueForKey:key]]);
                 
@@ -80,16 +78,13 @@
     }
     [nameMappingDic release];
     [typeMappingDic release];
-
+    
 }
 
 -(id)dealWithObjectWithKey:(id)key value:(id)value nameMappingDic:(NSDictionary*)nameMappingDic typeMappingDic:(NSDictionary *)typeMappingDic
 {
     id retunValue=nil;
-    
     Class  propertyClass =[MappingRuntimeHelper propertyClassForPropertyName:[nameMappingDic valueForKey:key] ofClass:[self class]];
-    
-    
     if (propertyClass==[NSDate class])
     {   NSDateFormatter *formatter =[[NSDateFormatter alloc]init];
         [formatter setDateFormat:[typeMappingDic valueForKey:[nameMappingDic valueForKey:key]]];

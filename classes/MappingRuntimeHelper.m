@@ -33,7 +33,7 @@ static NSMutableDictionary *propertyClassByClassAndPropertyName;
     NSString * typeString = [NSString stringWithUTF8String:type];
     NSArray * attributes = [typeString componentsSeparatedByString:@","];
     NSString * typeAttribute = [attributes objectAtIndex:1];
-
+    
     return [typeAttribute rangeOfString:@"R"].length > 0;
 }
 
@@ -64,7 +64,7 @@ static NSMutableDictionary *propertyClassByClassAndPropertyName;
 			free(properties);
             NSString *className ;
             if(property_getTypeName(property)!=NULL)
-			className= [NSString stringWithUTF8String:property_getTypeName(property)];
+                className= [NSString stringWithUTF8String:property_getTypeName(property)];
             else  className =@"bool";
 			[propertyClassByClassAndPropertyName setObject:className forKey:key];
             //we found the property - we need to free
@@ -72,7 +72,7 @@ static NSMutableDictionary *propertyClassByClassAndPropertyName;
 		}
 	}
     free(properties);
-
+    
 	return [self propertyClassForPropertyName:propertyName ofClass:class_getSuperclass(klass)];
 }
 
