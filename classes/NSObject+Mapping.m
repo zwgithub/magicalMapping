@@ -87,6 +87,7 @@
     Class  propertyClass =[MappingRuntimeHelper propertyClassForPropertyName:[nameMappingDic valueForKey:key] ofClass:[self class]];
     if (propertyClass==[NSDate class])
     {   NSDateFormatter *formatter =[[NSDateFormatter alloc]init];
+        
         [formatter setDateFormat:[typeMappingDic valueForKey:[nameMappingDic valueForKey:key]]];
         retunValue =[formatter dateFromString:value];
     }
