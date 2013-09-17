@@ -1,0 +1,18 @@
+{
+    "name":"class1",
+    "count":2,
+    "isGoodClass": true,
+    "leaderName": null,
+    "createDate":"2013-09-10 13:30",
+    "students":[
+                { "name":"bill",
+                "age":10},
+                { "name":"cook",
+                "age":12}
+                
+                ],
+    "englishTeacher":{ "name":"mac",
+                  "age":32
+    
+            }
+}
